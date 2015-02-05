@@ -1,0 +1,19 @@
+{
+  "name": "gogogo-report",
+  "version": "0.0.1",
+  "homepage": "https://github.com/uf0/gogogo-report",
+  "authors": [
+    "uf0"
+  ],
+  "description": "report site for studenst in motion project",
+  "main": "index.html",
+  "license": "GNU GPL3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
