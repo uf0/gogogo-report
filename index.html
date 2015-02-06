@@ -25,7 +25,7 @@
 
     <div class="container-fluid viz-full" id="header" >
         <div class="video-responsive">
-            <iframe id="playerVimeo" src="//player.vimeo.com/video/98626446?title=0&amp;byline=0&amp;portrait=0&amp;color=E8C102&amp;loop=1" width="954" height="537" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe id="playerVimeo" src="//player.vimeo.com/video/118928932?autoplay=1&amp;loop=1" width="954" height="537" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                 <div class="row explanation-viz" >
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <h1>About this Project</h1>
-                        <hr>
+                        <!-- <hr> -->
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-8">
                         <p>In the last few years many cities around the world have shown important changes in terms of mobility. The rise and growth of many car sharing services has been an important factor in changing the way people move inside the city.<br>
@@ -71,12 +71,12 @@
 
 
 
-        <div class="container-fluid viz-full" id="section2"><!--/section1-->
+        <div class="container-fluid" id="section2"><!--/section1-->
             <div class="container" >
                 <div class="row explanation-viz" >
                     <div class="col-xs-12 col-sm-12 col-md-4">
-                        <h1>Data Overview</h1>
-                        <hr>
+                        <h1>Districts</h1>
+                        <!-- <hr> -->
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-8">
                         <p>In february 2014 we started scraping data directly from the Enjoy website getting the position of all the cars available every 2 minutes. We collected more than 1,700,000 data points resulting in more than 20,000 rents, 100,000 km travelled and 800 days of usage.<br>
@@ -89,136 +89,34 @@
             </div>
             <div class="container">
                 <div class="row explanation-viz-small">
-                    <div class="overview-scale">
-                        <div class="time"><h4>00:00</h4></div>
-                        <div class="time"><h4>06:00</h4></div>
-                        <div class="time"><h4>12:00</h4></div>
-                        <div class="time"><h4>18:00</h4></div>
-                        <div class="time"><h4>24:00</h4></div>
+                    <div class="col-md-3" id="district_01">
+                        <div class="district_map"></div>
+                    
                     </div>
-                    <div class="overview-day">
+                    <div class="col-md-3" id="district_02">
+                     <div class="district_map"></div>
+                    </div>
+                    <div class="col-md-3" id="district_03">
+                          <div class="district_map"></div>
+                    </div>
+                    <div class="col-md-3" id="district_04">
+                          <div class="district_map"></div>
+                    </div>
+<!--                     <div class="overview-day">
                         <h4>mon</h4>
                         <h5>02/24</h5>
                         <img class="overview-img" src="img/mon.png">
-                    </div>
-                    <div class="overview-day">
-                        <h4>tue</h4>
-                        <h5>02/25</h5>
-                        <img class="overview-img" src="img/tue.png">
-                    </div>
-                    <div class="overview-day">
-                        <h4>wed</h4>
-                        <h5>02/26</h5>
-                        <img class="overview-img" src="img/wed.png">
-                    </div>
-                    <div class="overview-day">
-                        <h4>thu</h4>
-                        <h5>02/27</h5>
-                        <img class="overview-img" src="img/thu.png" >
-                    </div>
-                    <div class="overview-day">
-                        <h4>fri</h4>
-                        <h5>02/28</h5>
-                        <img class="overview-img" src="img/fri.png">
-                    </div>
-                    <div class="overview-day">
-                        <h4>sat</h4>
-                        <h5>03/01</h5>
-                        <img class="overview-img" src="img/sat.png">
-                    </div>
-                    <div class="overview-day">
-                        <h4>sun</h4>
-                        <h5>03/02</h5>
-                        <img class="overview-img" src="img/sun.png">
-                    </div>
-                </div>
-                <div class="row sum-first">
-                    <div class="label-sum">
-                        <div class="time"><h4>total rents</h4></div>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,580</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,723</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>3,255</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>3,337</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>3,200</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>3,898</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>3,258</h2>
-                    </div>
-                </div>
+                    </div> -->
 
-                <div class="row sum">
-                    <div class="label-sum">
-                        <div class="time"><h4>rent hours<br>
-                        </h4></div>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,623</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,365</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,893</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,762</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,842</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>3,279</h2>
-                    </div>
-                    <div class="overview-day">
-                        <h2>2,470</h2>
-                    </div>
-                </div>
-
-
-                <div class="row sum">
-                    <div class="label-sum">
-                        <div class="time"><h4>km traveled <br>
-                            (estimated)</h4></div>
-                        </div>
-                        <div class="overview-day">
-                            <h2>11,111</h2>
-                        </div>
-                        <div class="overview-day">
-                            <h2>11,689</h2>
-                        </div>
-                        <div class="overview-day">
-                            <h2>14,090</h2>
-                        </div>
-                        <div class="overview-day">
-                            <h2>14,543</h2>
-                        </div>
-                        <div class="overview-day">
-                            <h2>14,442</h2>
-                        </div>
-                        <div class="overview-day">
-                            <h2>17,271</h2>
-                        </div>
-                        <div class="overview-day">
-                            <h2>14,766</h2>
-                        </div>
-                    </div>
-
-
-                </div>
             </div>
+<!--             <div class="row explanation-viz-small">
+                    <div class="col-md-6" id="district_03">
+                          <div class="district_map"></div>
+                    </div>
+                    <div class="col-md-6" id="district_04">
+                          <div class="district_map"></div>
+                    </div>
+            </div> -->
         </div>
 
     </div><!--/section2-->
@@ -229,7 +127,7 @@
             <div class="row explanation-viz" >
                 <div class="col-xs-12 col-sm-12 col-md-4">
                     <h1>Routes</h1>
-                    <hr>
+                    <!-- <hr> -->
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8">
                     <p>Since Enjoy doesn’t provide any information about the routing, but just the positions of the available cars, we set a starting point every time a car becomes unavailable and an ending point when it becomes available again. We used an open routing service (<a href="http://project-osrm.org/" target="_blank">Open Source Routing Machine</a>) to estimate route geometries for each rent.<br>
@@ -368,9 +266,9 @@
     <script src="bower_components/d3-tile/index.js"></script>
         -->
 
-    <!--Vimeo API
+<!--     Vimeo API -->
     <script src='bower_components/vimeo-api/index.js'></script>
-
+<!--
     <script src="js/scripts.js"></script>
     <script src="js/streams.js"></script>
     <script src="js/carvoronoi.js"></script>

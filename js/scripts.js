@@ -65,71 +65,95 @@ $('.panel-thumbnail>a').click(function(e){
 
 
 /* map interactive */
-var southWest = L.latLng(45.3705,9.0404),
-    northEast = L.latLng(45.5554,9.3288),
-    bounds = L.latLngBounds(southWest, northEast);
 
-var map = L.mapbox.map('map', 'giorgiouboldi.ifkdj2f1', {
-                      minZoom:12,
-                      maxZoom:15,
-                      maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
-                    })
-            .setView([45.464, 9.194], 13);
+var mapsDistrict = [
+  $('#district_01 .district_map'),
+  $('#district_02 .district_map'),
+  $('#district_03 .district_map'),
+  $('#district_04 .district_map')
+  ]
 
-var layers = document.getElementById('menu-ui');
+mapsDistrict.forEach(function(d,i){
 
-// Disable drag and zoom handlers.
-map.touchZoom.disable();
-map.scrollWheelZoom.disable();
+  d.height(d.width());
 
-addLayer(L.mapbox.tileLayer('giorgiouboldi.cwxt7qfr'), 'Morning <br>06:00-12:00', 2);
-addLayer(L.mapbox.tileLayer('giorgiouboldi.2z55ewmi'), 'Afternoon <br>12:00-18:00', 3);
-addLayer(L.mapbox.tileLayer('giorgiouboldi.xoagu8fr'), 'Evening <br>18:00-00:00', 4);
-addLayer(L.mapbox.tileLayer('giorgiouboldi.vvwh4cxr'), 'Night <br>00:00-06:00', 5);
+  window['map_' + i] = L.map(
+      d[0]//,
+      //{maxBounds: [[52.2829,4.7948],[52.4476,5.0187]]}
+      ).setView([52.3667, 4.9000], 11);
+
+    var stamenLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.png', {
+      // attribution: '<a href="http://stamen.com">Stamen Design</a> | <a href="http://openstreetmap.org">OpenStreetMap</a>',
+      attributionControl: false,
+      infoControl: true,
+      minZoom:8,
+      maxZoom:17
+  }).addTo(window['map_' + i]);
+
+window['map_' + i].on('moveend', follow).on('zoomend', follow);
+
+d3.json('data/pind_' + i +'.json', function(error, data){
+  L.geoJson(data, { style: L.mapbox.simplestyle.style }).addTo(window['map_' + i]);
+})
+
+})
+
+// when either map finishes moving, trigger an update on the other one.
 
 
-function addLayer(layer, name, zIndex) {
-  layer
-    .setZIndex(zIndex)
-    .setOpacity(0.4)
-    .addTo(map);
+// quiet is a cheap and dirty way of avoiding a problem in which one map
+// syncing to another leads to the other map syncing to it, and so on
+// ad infinitum. this says that while we are calling sync, do not try to 
+// loop again and sync other maps
+var quiet = false;
+function follow(e) {
+    if (quiet) return;
+    quiet = true;
+    if (e.target === window['map_0']){
+     sync(window['map_1'], e)
+     sync(window['map_2'], e)
+     sync(window['map_3'], e)
+    };
+    if (e.target === window['map_1']) {
+      sync(window['map_0'], e)
+     sync(window['map_2'], e)
+     sync(window['map_3'], e)
+    };
+    if (e.target === window['map_2']) {
+      sync(window['map_0'], e)
+     sync(window['map_1'], e)
+     sync(window['map_3'], e)
+    };
+    if (e.target === window['map_3']) {
+      sync(window['map_0'], e)
+     sync(window['map_1'], e)
+     sync(window['map_2'], e)
+    };
+    quiet = false;
+}
 
-  // Create a simple layer switcher that
-  // toggles layers on and off.
-  var link = document.createElement('a');
-  link.href = '#';
-  link.className = 'active';
-  link.innerHTML = name;
-
-  link.onclick = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (map.hasLayer(layer)) {
-      map.removeLayer(layer);
-      this.className = '';
-    } else {
-      map.addLayer(layer);
-      this.className = 'active';
-    }
-  };
-
-  layers.appendChild(link);
+// sync simply steals the settings from the moved map (e.target)
+// and applies them to the other map.
+function sync(map, e) {
+    map.setView(e.target.getCenter(), e.target.getZoom(), {
+        animate: false,
+        reset: true
+    });
 }
 
 /*Map nil*/
-var mapNil = L.mapbox.map('nil', 'giorgiouboldi.ik5ijhpf', {
-      attributionControl: false,
-      infoControl: true,
-      minZoom:10,
-      maxZoom:16,
-      maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
-    })
-    .setView([45.460, 9.194], 11);
+// var mapNil = L.mapbox.map('nil', 'giorgiouboldi.ik5ijhpf', {
+//       attributionControl: false,
+//       infoControl: true,
+//       minZoom:10,
+//       maxZoom:16,
+//       maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
+//     })
+//     .setView([45.460, 9.194], 11);
 
-// Disable drag and zoom handlers.
-mapNil.touchZoom.disable();
-mapNil.scrollWheelZoom.disable();
+// // Disable drag and zoom handlers.
+// mapNil.touchZoom.disable();
+// mapNil.scrollWheelZoom.disable();
 
 /*Sticky Lables*/
 

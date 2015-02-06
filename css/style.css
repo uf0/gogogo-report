@@ -102,13 +102,13 @@ hr{
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
-	color:#E8C102;
-	background-color: #2e2e2e;
+	color:#f00;
+	background-color: #fff;
 }
 
 .nav-justified>li>a {
 	margin-bottom: 5px;
-	text-align: left;
+	text-align: center;
 }
 
 
@@ -178,24 +178,25 @@ hr{
 }  
 
 .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
-	color: #E8C102;
+	color: #f00;
 	background-color: transparent;
 }
 
 /* customize nav style */
 .navbar-custom {
-	background-color: #2e2e2e;
+	background-color: white;
 	font-weight:700;
 	text-transform:uppercase;
 	border-width:0;
 	font-family: "Raleway",sans-serif;
 	letter-spacing: 1px;
+	border-bottom: 1px solid black;
 }
 .navbar-custom  .navbar-nav>li>a {
-	color: #ddd;
+	color: #000;
 }
 .navbar-custom  .dropdown-menu li>a:hover {
-	color: #eee;
+	color: #f00;
 }
 .navbar-custom  .navbar-nav li>a:hover, .navbar-nav li .open, .navbar-custom .navbar-nav .active a  {
 
@@ -261,7 +262,7 @@ h1 {
 	font-size: 2em;
 	text-transform: uppercase;
 	font-weight: 900;
-	color:#E8C102;
+	color:#000;
 	letter-spacing: 1px;
 	margin-top: 0;
 }
@@ -339,7 +340,7 @@ p{
 
 /*overview*/
 #section2{
-	background-color: #E8C102;
+	background-color: #fff;
 }
 
 #section2 h1{
