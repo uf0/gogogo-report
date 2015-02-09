@@ -1,33 +1,24 @@
-d3.select('#section1').attr("style", 'margin-top:' + $('#header').height() + 'px')
+var headerH = $('#header').height();
 
-d3.select('#nav').attr("style", 'top:' + $('#header').height() + 'px')
+d3.select('#section1').attr("style", 'margin-top:' + headerH + 'px')
+
+d3.select('#nav').attr("style", 'top:' + headerH + 'px;position:relative')
 
 $('.carousel').carousel({interval:false});
-
-$('#nav').on('affixed.bs.affix', function () {
-    d3.select('#nav').attr("style", null)
-    console.log("ciao")
-});
-
-$('#nav').on('affix.bs.affix', function () {
-    d3.select('#nav').attr("style", null)
-    console.log("ciao pre")
-});
-
 /* affix the navbar after scroll below header */
 $('#nav').affix({
       offset: {
-        top: $('#header').height()
+        top: headerH
       }
 });	
+
+$('#nav').on('affix.bs.affix', function () {
+    d3.select('#nav').attr("style", null)
+});
 
 /* highlight the top nav as scrolling occurs */
 $('body').scrollspy({ target: '#nav', offset: 100 })
 
-/* smooth scrolling for scroll to top */
-$('.scroll-top').click(function(){
-  $('body,html').animate({scrollTop:0},1000);
-})
 
 /* smooth scrolling for nav sections */
 $('#nav .navbar-nav li>a').click(function(e){
@@ -36,46 +27,6 @@ $('#nav .navbar-nav li>a').click(function(e){
   var posi = $(link).offset().top;
   $('body,html').animate({scrollTop:posi+"px"},700);
 });
-
-
-// /* copy loaded thumbnails into carousel */
-// $('.panel .img-responsive').on('load', function() {
-  
-// }).each(function(i) {
-//   if(this.complete) {
-//   	var item = $('<div class="item"></div>');
-//     var itemDiv = $(this).parent('a');
-//     var title = $(this).parent('a').attr("title");
-    
-//     item.attr("title",title);
-//   	$(itemDiv.html()).appendTo(item);
-//   	item.appendTo('#modalCarousel .carousel-inner'); 
-//     if (i==0){ // set first item active
-//      item.addClass('active');
-//     }
-//   }
-// });
-
-// /* activate the carousel */
-// $('#modalCarousel').carousel({interval:false});
-
-// /* change modal title when slide changes */
-// $('#modalCarousel').on('slid.bs.carousel', function () {
-//   $('.modal-title').html($(this).find('.active').attr("title"));
-// })
-
-// /* when clicking a thumbnail */
-// $('.panel-thumbnail>a').click(function(e){
-  
-//     e.preventDefault();
-//     var idx = $(this).parents('.panel').parent().index();
-//   	var id = parseInt(idx);
-  	
-//   	$('#myModal').modal('show'); // show the modal
-//     $('#modalCarousel').carousel(id); // slide carousel to selected
-//   	return false;
-// });
-
 
 /* map interactive */
 
@@ -171,52 +122,86 @@ d3.json('data/statsperday.json', function(error, data){
 
 /* video autoplay/pause on scroll */
 
-var froogaloop = $f(playerVimeo)
 
-function elementInViewport(el) {
+var froogaloop;
 
-  var el = el[0]
+$f($('#playerVimeo')[0]).addEvent('ready', ready);
 
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+function ready(player_id) {
+    // Keep a reference to Froogaloop for this player
+        froogaloop = $f(player_id);
+      }
 
-  while(el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
+
+// function elementInViewport(el) {
+
+//   var el = el[0]
+
+//   var top = el.offsetTop;
+//   var left = el.offsetLeft;
+//   var width = el.offsetWidth;
+//   var height = el.offsetHeight;
+
+//   while(el.offsetParent) {
+//     el = el.offsetParent;
+//     top += el.offsetTop;
+//     left += el.offsetLeft;
+//   }
+
+//   return (
+//     top < (window.pageYOffset + window.innerHeight) &&
+//     left < (window.pageXOffset + window.innerWidth) &&
+//     (top + height) > window.pageYOffset &&
+//     (left + width) > window.pageXOffset
+//     );
+// }
+
+// function callbackIn () {
+//   setTimeout(
+//     function(){
+//       froogaloop.api('play')
+//     }, 500)
+// } 
+
+// function callbackOut () {
+//   froogaloop.api('pause');
+// } 
+
+// function fireIfElementVisible (el, callbackIn, callbackOut) {
+//   return function () {
+//     if ( elementInViewport(el) ) {
+//       callbackIn();
+//     }else{
+//       callbackOut()
+//     }
+//   }
+// }
+
+//var videoHandler = fireIfElementVisible($(".video-responsive"), callbackIn, callbackOut);
+
+// $(window).on('resize scroll', videoHandler);
+
+var checknav = function(e){
+  var scroll = $(window).scrollTop();
+
+  if(scroll <= headerH){
+    d3.select('#nav').attr("style", 'top:' + headerH + 'px;position:relative')
   }
 
-  return (
-    top < (window.pageYOffset + window.innerHeight) &&
-    left < (window.pageXOffset + window.innerWidth) &&
-    (top + height) > window.pageYOffset &&
-    (left + width) > window.pageXOffset
-    );
-}
-
-function callbackIn () {
-  setTimeout(
-    function(){
-      froogaloop.api('play')
-    }, 500)
-} 
-
-function callbackOut () {
-  froogaloop.api('pause');
-} 
-
-function fireIfElementVisible (el, callbackIn, callbackOut) {
-  return function () {
-    if ( elementInViewport(el) ) {
-      callbackIn();
-    }else{
-      callbackOut()
-    }
+  if(scroll > headerH){
+    froogaloop.api('pause');
+  }else{
+    froogaloop.api('play');
   }
+
 }
 
-var videoHandler = fireIfElementVisible($(".video-responsive"), callbackIn, callbackOut);
+$(window).on('scroll', checknav); 
 
-$(window).on('resize scroll', videoHandler); 
+
+
+
+
+
+
+
