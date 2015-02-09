@@ -1,10 +1,23 @@
+d3.select('#section1').attr("style", 'margin-top:' + $('#header').height() + 'px')
+
+d3.select('#nav').attr("style", 'top:' + $('#header').height() + 'px')
 
 $('.carousel').carousel({interval:false});
+
+$('#nav').on('affixed.bs.affix', function () {
+    d3.select('#nav').attr("style", null)
+    console.log("ciao")
+});
+
+$('#nav').on('affix.bs.affix', function () {
+    d3.select('#nav').attr("style", null)
+    console.log("ciao pre")
+});
 
 /* affix the navbar after scroll below header */
 $('#nav').affix({
       offset: {
-        top: $('#header').height()-$('#nav').height()
+        top: $('#header').height()
       }
 });	
 
@@ -25,43 +38,43 @@ $('#nav .navbar-nav li>a').click(function(e){
 });
 
 
-/* copy loaded thumbnails into carousel */
-$('.panel .img-responsive').on('load', function() {
+// /* copy loaded thumbnails into carousel */
+// $('.panel .img-responsive').on('load', function() {
   
-}).each(function(i) {
-  if(this.complete) {
-  	var item = $('<div class="item"></div>');
-    var itemDiv = $(this).parent('a');
-    var title = $(this).parent('a').attr("title");
+// }).each(function(i) {
+//   if(this.complete) {
+//   	var item = $('<div class="item"></div>');
+//     var itemDiv = $(this).parent('a');
+//     var title = $(this).parent('a').attr("title");
     
-    item.attr("title",title);
-  	$(itemDiv.html()).appendTo(item);
-  	item.appendTo('#modalCarousel .carousel-inner'); 
-    if (i==0){ // set first item active
-     item.addClass('active');
-    }
-  }
-});
+//     item.attr("title",title);
+//   	$(itemDiv.html()).appendTo(item);
+//   	item.appendTo('#modalCarousel .carousel-inner'); 
+//     if (i==0){ // set first item active
+//      item.addClass('active');
+//     }
+//   }
+// });
 
-/* activate the carousel */
-$('#modalCarousel').carousel({interval:false});
+// /* activate the carousel */
+// $('#modalCarousel').carousel({interval:false});
 
-/* change modal title when slide changes */
-$('#modalCarousel').on('slid.bs.carousel', function () {
-  $('.modal-title').html($(this).find('.active').attr("title"));
-})
+// /* change modal title when slide changes */
+// $('#modalCarousel').on('slid.bs.carousel', function () {
+//   $('.modal-title').html($(this).find('.active').attr("title"));
+// })
 
-/* when clicking a thumbnail */
-$('.panel-thumbnail>a').click(function(e){
+// /* when clicking a thumbnail */
+// $('.panel-thumbnail>a').click(function(e){
   
-    e.preventDefault();
-    var idx = $(this).parents('.panel').parent().index();
-  	var id = parseInt(idx);
+//     e.preventDefault();
+//     var idx = $(this).parents('.panel').parent().index();
+//   	var id = parseInt(idx);
   	
-  	$('#myModal').modal('show'); // show the modal
-    $('#modalCarousel').carousel(id); // slide carousel to selected
-  	return false;
-});
+//   	$('#myModal').modal('show'); // show the modal
+//     $('#modalCarousel').carousel(id); // slide carousel to selected
+//   	return false;
+// });
 
 
 /* map interactive */
@@ -91,6 +104,7 @@ mapsDistrict.forEach(function(d,i){
   }).addTo(window['map_' + i]);
 
 window['map_' + i].on('moveend', follow).on('zoomend', follow);
+window['map_' + i].scrollWheelZoom.disable();
 
 d3.json('data/pind_' + i +'.json', function(error, data){
   L.geoJson(data, { style: L.mapbox.simplestyle.style }).addTo(window['map_' + i]);
@@ -141,28 +155,19 @@ function sync(map, e) {
     });
 }
 
-/*Map nil*/
-// var mapNil = L.mapbox.map('nil', 'giorgiouboldi.ik5ijhpf', {
-//       attributionControl: false,
-//       infoControl: true,
-//       minZoom:10,
-//       maxZoom:16,
-//       maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
-//     })
-//     .setView([45.460, 9.194], 11);
+/* statistics */
 
-// // Disable drag and zoom handlers.
-// mapNil.touchZoom.disable();
-// mapNil.scrollWheelZoom.disable();
-
-/*Sticky Lables*/
-
-  $('#stream-label').affix({
-    offset: {
-      top: $("#stream-label").offset().top
-
-    }
+d3.json('data/statsperday.json', function(error, data){
+  data.forEach(function(d,i){
+    var div = d3.select('#stats_' + i);
+    div.append("h5").text("teams")
+    div.append("p").text(d.values.totTeams)
+    div.append("h5").text("routes")
+    div.append("p").text(d.values.totRoutes)
+    div.append("h5").text("distance")
+    div.append("p").html(d3.format(".2f")(d.values.totKm) + '<span class="km">km</span>')
   })
+})
 
 /* video autoplay/pause on scroll */
 

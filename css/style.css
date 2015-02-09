@@ -73,9 +73,9 @@ hr{
 	height: auto !important;
 	height: 100%;
 	/* Negative indent footer by its height */
-	margin: 0 auto -60px;
+	/*margin: 0 auto -60px;*/
 	/* Pad bottom by footer height */
-	padding: 0 0 60px;
+	/*padding: 0 0 60px;*/
 }
 
 
@@ -124,7 +124,7 @@ hr{
 .intro h1{
 	text-align: left;
 	margin-top: 10%;
-	font-family: "Raleway", serif;
+	font-family: "Merriweather", serif;
 	font-size: 5em;
 	text-transform: uppercase;
 	font-weight: 900;
@@ -143,7 +143,7 @@ hr{
 .intro h2{
 	text-align: left;
 	margin-top: 50px;
-	font-family: "Cardo", serif;
+	font-family: "Merriweather", serif;
 	font-size: 2em;
 	font-weight: 400;
 	line-height: 130%;
@@ -152,8 +152,8 @@ hr{
 
 #nav {
 	width: 100%;
-	position:static;
-	top:-32px;
+	position:relative;
+/*	top:802px;*/
 }
 
 #nav.affix {
@@ -162,6 +162,7 @@ hr{
 	z-index:10000;
 	-webkit-transition: all .6s ease-in-out;
 }
+
 
 #footer > .container {
 
@@ -188,7 +189,7 @@ hr{
 	font-weight:700;
 	text-transform:uppercase;
 	border-width:0;
-	font-family: "Raleway",sans-serif;
+	font-family: "Roboto",sans-serif;
 	letter-spacing: 1px;
 	border-bottom: 1px solid black;
 }
@@ -257,8 +258,8 @@ hr{
 
 
 h1 {
-	text-align: left;
-	font-family: "Raleway", sans-serif;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
 	font-size: 2em;
 	text-transform: uppercase;
 	font-weight: 900;
@@ -270,12 +271,17 @@ h1 {
 
 .explanation-viz{
 	margin-top: 150px;
-	margin-bottom: 50px;
+	margin-bottom: 100px;
+}
+
+.explanation-viz-districts{
+margin-top: 150px;
+margin-bottom: 50px;
 }
 
 .explanation-viz-small{
 	margin-top: 20px;
-	margin-bottom: 10px;
+	margin-bottom: 100px;
 }
 
 .viz-full{
@@ -290,25 +296,45 @@ h1 {
 	background-color: #ccc;
 }
 
-p{
-	margin-top: 0;
-	font-family: "Cardo", serif;
-	font-size: 1.5em;
+.red {
+	color: #f00;
 }
 
-.explanation hr, .explanation-viz hr{
-	width:50px;
-	text-align: left;
-	margin-left: 0;
-	border: 3px solid #E8C102;
+p{
+	margin-top: 0;
+	font-family: "Merriweather", serif;
+	font-size: 1.3em;
+
+}
+
+p:first-child:first-letter { 
+	float: left;
+	font-size: 2.6em; 
+	line-height: 43px; 
+	padding-top: 7px; 
+	padding-right: 8px; 
+	padding-left: 3px;
+}
+
+p .smallcaps{
+	font-variant: small-caps;
+	font-weight: 700;
+
+}
+
+.explanation hr, .explanation-viz hr, .explanation-viz-districts hr{
+	width:100px;
+	text-align: center;
 	margin-top: 10px;
+	margin-bottom: 50px;
+	color: black;
 }
 
 
 .overview h2{
 	text-align: left;
 	margin-top: 0;
-	font-family: "Raleway", sans-serif;
+	font-family: "Merriweather", sans-serif;
 	font-size: 4em;
 	text-transform: uppercase;
 	font-weight: 900;
@@ -326,7 +352,7 @@ p{
 .overview h3{
 	text-align: left;
 	margin-top: 0;
-	font-family: "Raleway", sans-serif;
+	font-family: "Merriweather", sans-serif;
 	font-size: 1em;
 	text-transform: uppercase;
 	font-weight: 800;
@@ -339,7 +365,16 @@ p{
 }
 
 /*overview*/
-#section2{
+
+#section1, #section2{
+	border-bottom: 1px dashed #ccc;
+}
+
+#section3{
+	border-bottom: 30px solid black;
+}
+
+#section1, #section2, #section3{
 	background-color: #fff;
 }
 
@@ -347,8 +382,20 @@ p{
 	color: #333;
 }
 
-#section2 hr{
+/*#section2 hr{
 	border: 3px solid #333;
+}*/
+
+/*.fix-video{
+	position: fixed;
+	width: 100%;
+	z-index: -20;
+}
+*/
+#header{
+	position: fixed;
+	width: 100%;
+	z-index: -20;
 }
 
 .overview-scale{
@@ -371,7 +418,7 @@ p{
 }
 
 .time h4{
-	font-family: "Raleway", sans-serif;
+	font-family: "Merriweather", sans-serif;
 	font-size: 0.8em;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -388,9 +435,7 @@ p{
 }
 
 .overview-day{
-	width: 13%;
-	float: left;
-	padding:0 5px;
+	text-align: left;
 }
 
 .sum-first{
@@ -401,26 +446,14 @@ p{
 }
 
 .overview-day h4{
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 1em;
-	text-transform: uppercase;
 	font-weight: 700;
-	letter-spacing: 1px;
-	text-align: center;
-	line-height: 30%;
-}
-
-.overview-day h5{
-	font-family: "Raleway", sans-serif;
-	font-size: 0.8em;
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: 1px;
-	text-align: center;
+	margin-left: 0px;
 }
 
 .overview-day h2{
-	font-family: "Raleway", sans-serif;
+	font-family: "Merriweather", sans-serif;
 	font-size: 1em;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -430,6 +463,32 @@ p{
 }
 
 
+/* stats */
+
+.stats{
+	margin-top: 20px;
+}
+
+.stats h5{
+	font-family: 'Roboto', sans-serif;
+	text-transform: uppercase;
+	font-size: 0.8em;
+	border-bottom: 1px solid #ccc;
+	color: grey;
+	margin-bottom: 0px;
+	letter-spacing: 1px;
+}
+
+.stats p{
+	font-family: 'Roboto', sans-serif;
+	font-size:2em;
+}
+
+.stats .km{
+	font-family: 'Merriweather', serif;
+	font-style: italic;
+	font-size: 0.7em;
+}
 
 /*map paths*/
 .menu-ui {
@@ -451,7 +510,7 @@ p{
 	text-align:center;
 	font-weight:900;
 	text-transform:uppercase;
-	font-family: "Raleway",sans-serif;
+	font-family: "Merriweather",sans-serif;
 	letter-spacing: 1px;
 	background:#CCCCCC;	
 }
@@ -521,7 +580,7 @@ text-decoration: none;
 #nil .map-tooltip-content h2{
 	margin: 0;
 	font-size: 1em;
-	font-family: "Raleway", sans-serif;
+	font-family: "Merriweather", sans-serif;
 	letter-spacing: 1px;
 	font-weight: 700;
 }
@@ -537,7 +596,7 @@ text-decoration: none;
 }
 
 #streams .x text{
-	font-family: "Raleway", sans-serif;
+	font-family: "Merriweather", sans-serif;
 	font-size: 1em;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -548,7 +607,7 @@ text-decoration: none;
 
 
 #streams .xhours text{
-    font-family: "Raleway", sans-serif;
+    font-family: "Merriweather", sans-serif;
 	font-size: 0.8em;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -566,7 +625,7 @@ text-decoration: none;
     stroke-width:1;
 }
 #streams text{
-    font-family:"Raleway";
+    font-family:"Merriweather";
 }
 
 #stream-label.affix {
@@ -604,7 +663,7 @@ text-decoration: none;
 }
 
 #footer p{
-    font-family: "Raleway", sans-serif;
+    font-family: "Merriweather", sans-serif;
 	font-size: 0.8em;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -625,7 +684,7 @@ font-size: 1em;
 
 .disclaimer h3, #footer h3{
 text-align: left;
-font-family: "Raleway", sans-serif;
+font-family: "Merriweather", sans-serif;
 font-size: 1em;
 text-transform: uppercase;
 font-weight: 900;
