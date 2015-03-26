@@ -1,5 +1,5 @@
 d3.json('data/routesperteamreduced.json', function(data){
-	
+
 	data.forEach(function(d){
 		d.values = d.values.sort(function(a,b){
 			return (a.method < b.method) ? -1 : (a.method > b.method) ? 1 : 0;
@@ -9,7 +9,7 @@ d3.json('data/routesperteamreduced.json', function(data){
 	var data = data.sort(function(a,b){
 		return b.values.length - a.values.length
 	})
-	
+
 	var rex = /(<([^>]+)>)/ig;
 
 	var margin = {top: 20, right: 0, bottom: 20, left: 0};
@@ -42,7 +42,7 @@ d3.json('data/routesperteamreduced.json', function(data){
 
     var areaScale = d3.scale.log()
                     .domain([minKm, maxKm])
-                    .range([10, 2000])
+                    .range([50, 1000])
 
 	var colorScale = d3.scale.ordinal()
 		.domain(["walking", "public_transport", "bike"])
@@ -113,7 +113,7 @@ d3.json('data/routesperteamreduced.json', function(data){
 				.attr("font-weight","bold")
 				.attr("dy", "4px")
 
-	
+
 	teamButton.append("circle")
 			.attr("r", 11)
 			.attr("fill", "#f00")
