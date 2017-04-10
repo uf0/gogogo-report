@@ -1,0 +1,34 @@
+[
+  {
+    "key": "Mon Feb 02 2015 00:00:00 GMT+0100 (CET)",
+    "values": {
+      "totRoutes": 86,
+      "totKm": 557.9017041671998,
+      "totTeams": 36
+    }
+  },
+  {
+    "key": "Tue Feb 03 2015 00:00:00 GMT+0100 (CET)",
+    "values": {
+      "totRoutes": 96,
+      "totKm": 1075.3205766757903,
+      "totTeams": 42
+    }
+  },
+  {
+    "key": "Wed Feb 04 2015 00:00:00 GMT+0100 (CET)",
+    "values": {
+      "totRoutes": 83,
+      "totKm": 983.2289943442794,
+      "totTeams": 33
+    }
+  },
+  {
+    "key": "Thu Feb 05 2015 00:00:00 GMT+0100 (CET)",
+    "values": {
+      "totRoutes": 45,
+      "totKm": 671.7469548545077,
+      "totTeams": 18
+    }
+  }
+]
