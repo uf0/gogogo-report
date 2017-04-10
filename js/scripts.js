@@ -10,7 +10,7 @@ $('#nav').affix({
       offset: {
         top: headerH
       }
-});	
+});
 
 $('#nav').on('affix.bs.affix', function () {
     d3.select('#nav').attr("style", null)
@@ -68,7 +68,7 @@ d3.json('data/pind_' + i +'.json', function(error, data){
 
 // quiet is a cheap and dirty way of avoiding a problem in which one map
 // syncing to another leads to the other map syncing to it, and so on
-// ad infinitum. this says that while we are calling sync, do not try to 
+// ad infinitum. this says that while we are calling sync, do not try to
 // loop again and sync other maps
 var quiet = false;
 function follow(e) {
@@ -125,7 +125,7 @@ d3.json('data/statsperday.json', function(error, data){
 
 var froogaloop;
 
-$f($('#playerVimeo')[0]).addEvent('ready', ready);
+//$f($('#playerVimeo')[0]).addEvent('ready', ready);
 
 function ready(player_id) {
     // Keep a reference to Froogaloop for this player
@@ -161,11 +161,11 @@ function ready(player_id) {
 //     function(){
 //       froogaloop.api('play')
 //     }, 500)
-// } 
+// }
 
 // function callbackOut () {
 //   froogaloop.api('pause');
-// } 
+// }
 
 // function fireIfElementVisible (el, callbackIn, callbackOut) {
 //   return function () {
@@ -189,19 +189,11 @@ var checknav = function(e){
   }
 
   if(scroll > headerH){
-    froogaloop.api('pause');
+    //froogaloop.api('pause');
   }else{
-    froogaloop.api('play');
+    //froogaloop.api('play');
   }
 
 }
 
-$(window).on('scroll', checknav); 
-
-
-
-
-
-
-
-
+$(window).on('scroll', checknav);
